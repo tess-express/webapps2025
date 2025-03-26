@@ -1,0 +1,15 @@
+{% extends 'payapp/base.html' %}
+
+{% block title %}
+    Pay App Homepage
+{% endblock %}
+
+{% block content %}
+
+    {% if user.is_authenticated %}
+        <h1>Hello, <em>{{ user.username }}</em></h1>
+    {% else %}
+        <h5>Comment Store Application Homepage.</h5>
+    {% endif %}
+
+{% endblock %}
