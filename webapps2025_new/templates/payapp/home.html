@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-
+    {% csrf_token %}
     {% if user.is_authenticated %}
         <h1>Hello, <em>{{ user.username }}</em></h1>
     {% else %}
