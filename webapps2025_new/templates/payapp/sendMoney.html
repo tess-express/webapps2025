@@ -1,0 +1,14 @@
+{% extends 'payapp/base.html' %}
+
+{% block title %}
+    Send Money
+{% endblock %}
+
+{% block content %}
+    <h1>Send Money</h1>
+    <form method="post" class="form-group">
+        {% csrf_token %}
+        {{ send_money }}
+        <button type="submit" class="btn btn-success">Login</button>
+    </form>
+{% endblock %}
