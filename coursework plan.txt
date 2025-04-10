@@ -1,0 +1,42 @@
+REGISTER
+-first name
+-last name
+-email address
+-password
+-currency (USD, GBP, EUR)
+
+LOGIN
+
+MAKE TRANSACTION
+uses email as unique identifier
+checks if:
+	recipient exists
+	sufficient funds are in sender's account
+
+REQUEST TRANSACTION
+payment request sent to another user
+user can reject or accept request
+if accepts, recipient sends money to sender
+
+VIEW TRANSACTION REQUESTS
+this is where user can accept or reject requests
+
+VIEW BALANCE
+Shows your, well, balance
+
+VIEW TRANSACTIONS
+need to be logged in
+view transactions in a table probably?
+Sorted by most recent
+Shows:
+	Who it was to
+	How much money it was
+	When it was
+	Sent or received
+
+ADMIN VIEW
+View all user accounts and transactions
+
+CURRENCY CONVERSION
+Accomplished by a RESTful web service
+Exchange rates hard-coded into source code

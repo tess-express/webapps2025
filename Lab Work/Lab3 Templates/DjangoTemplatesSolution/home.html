@@ -1,0 +1,28 @@
+{% extends 'commentstoreapp/base.html' %}
+
+{% block title %}
+    Comment Store Homepage
+{% endblock %}
+
+{% block content %}
+    <h2>This is the Commet Store Application Home Page</h2>
+
+    {% if cmnt_list|length > 0 %}
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Comment</th>
+            </tr>
+            {% for cmnt in cmnt_list %}
+                <tr>
+                    <td>{{ cmnt.name }}</td>
+                    <td>{{ cmnt.visitdate }}</td>
+                    <td>{{ cmnt.commentstr }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <h5>There are no comments.</h5>
+    {% endif %}
+{% endblock %}

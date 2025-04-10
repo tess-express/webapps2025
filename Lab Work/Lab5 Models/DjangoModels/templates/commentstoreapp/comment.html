@@ -1,0 +1,17 @@
+{% extends 'commentstoreapp/base.html' %}
+
+{% block title %}
+    Insert a comment
+{% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <h4> Insert a new comment </h4>
+    <form method="POST" action="/commentstore/">
+        {{ form|crispy }}
+        <button type="submit" value="submit" class="btn btn-primary">Submit Comment</button>
+        <button type="reset" value="submit" class="btn btn-primary">Reset Form</button>
+    </form>
+
+{% endblock %}
