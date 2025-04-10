@@ -5,17 +5,39 @@
 {% endblock %}
 
 {% block content %}
-
     {% csrf_token %}
     {% if user.is_authenticated %}
-
         <body>
-            <h1>Hello, <em>{{ user.forename }}</em></h1>
-            <h1>Your balance is <em>{{ user.balance }}{{ user.currency }}</em></h1>
+            <h1>Hello, {{ user.forename }}</h1>
+            <h1>Your balance is <em>{{ currency_symbol }}{{ user.balance.balance }}</em></h1>
+            {% if users|length > 0 %}
+                <br>
+                <table>
+                    <tr>
+                        <th>Email</th>
+                        <th>Forename</th>
+                        <th>Surname</th>
+                        <th>Admin</th>
+                        <th>Balance</th>
+                        <th>Currency</th>
+                    </tr>
+                    {% for u in users %}
+                        <tr>
+                            <td>{{ u.email }}</td>
+                            <td>{{ u.forename }}</td>
+                            <td>{{ u.surname }}</td>
+                            <td>{{ u.is_staff }}</td>
+                            <td>{{ u.balance.balance }}</td>
+                            <td>{{ u.balance.currency }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            {% endif %}
         </body>
-
     {% else %}
-        <h5>Pay App Homepage.</h5>
+        <body>
+            <h1>Welcome to the PayApp website!</h1>
+            <h3>Please <a href="/login/">log in</a> or <a href="/register/">make an account</a> to access the rest of the site.</h3>
+        </body>
     {% endif %}
-
 {% endblock %}

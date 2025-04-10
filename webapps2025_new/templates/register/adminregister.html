@@ -1,18 +1,14 @@
 {% extends 'payapp/base.html' %}
 
 {% block title %}
-    Create an Account
+    Create an Admin Account
 {% endblock %}
 
 {% block content %}
-
     <h1>Register</h1>
     <form method="post" class="form-group">
         {% csrf_token %}
-        {{ register_user }}
+        {{ register_admin }}
         <button type="submit" class="btn btn-success">Register</button>
     </form>
-    {% if user.is_superuser %}
-        <h6><a href="adminregister.html">Register admin</a></h6>
-    {% endif %}
 {% endblock %}

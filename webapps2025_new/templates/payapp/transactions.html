@@ -1,0 +1,40 @@
+{% extends 'payapp/base.html' %}
+
+{% block title %}
+    Transactions
+{% endblock %}
+
+{% block content %}
+    {% csrf_token %}
+    {% if user.is_authenticated %}
+        <body>
+            {% if transaction_list|length > 0 %}
+                <br>
+                <table>
+                    <tr>
+                        <th>Sender</th>
+                        <th>Recipient</th>
+                        <th>Amount</th>
+                        <th>Date and Time</th>
+                    </tr>
+                    {% for trans in transaction_list %}
+                        <tr>
+                            <td>{{ trans.sender }}</td>
+                            <td>{{ trans.recipient }}</td>
+                            <td>{{ trans.amount }}</td>
+                            <td>{{ trans.datetime }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            {% else %}
+                <h1>You have no transactions.</h1>
+                <h3>When you have sent or been sent money, you will be able to view your transactions here.</h3>
+            {% endif %}
+        </body>
+    {% else %}
+        <body>
+            <h1>You are not logged in.</h1>
+            <h3>Please <a href="/login/">log in</a> to view transactions.</h3>
+        </body>
+    {% endif %}
+{% endblock %}

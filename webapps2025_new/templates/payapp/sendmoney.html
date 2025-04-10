@@ -1,0 +1,21 @@
+{% extends 'payapp/base.html' %}
+
+{% block title %}
+    Send Money
+{% endblock %}
+
+{% block content %}
+    {% csrf_token %}
+    {% if user.is_authenticated %}
+        <h1>Send Money</h1>
+        <h6>Available balance: {{ user.balance.balance }}</h6>
+        <form method="post" class="form-group">
+            {% csrf_token %}
+            {{ send_money }}
+            <button type="submit" class="btn btn-success">Send</button>
+        </form>
+    {% else %}
+        <h1>You are not logged in.</h1>
+        <h3>Please <a href="/login/">log in</a> to send money.</h3>
+    {% endif %}
+{% endblock %}

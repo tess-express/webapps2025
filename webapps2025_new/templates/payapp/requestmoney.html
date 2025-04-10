@@ -1,0 +1,20 @@
+{% extends 'payapp/base.html' %}
+
+{% block title %}
+    Request Money
+{% endblock %}
+
+{% block content %}
+    {% csrf_token %}
+    {% if user.is_authenticated %}
+        <h1>Request Money</h1>
+        <form method="post" class="form-group">
+            {% csrf_token %}
+            {{ request_money }}
+            <button type="submit" class="btn btn-success">Send</button>
+        </form>
+    {% else %}
+        <h1>You are not logged in.</h1>
+        <h3>Please <a href="/login/">log in</a> to request money.</h3>
+    {% endif %}
+{% endblock %}

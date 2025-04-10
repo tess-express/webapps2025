@@ -1,0 +1,43 @@
+{% extends 'payapp/base.html' %}
+
+{% block title %}
+    Requests
+{% endblock %}
+
+{% block content %}
+    {% csrf_token %}
+    {% if user.is_authenticated %}
+        <body>
+            {% if request_list|length > 0 %}
+                <br>
+                <table>
+                    <tr>
+                        <th>Requester</th>
+                        <th>Recipient</th>
+                        <th>Amount</th>
+                        <th>Date and Time</th>
+                    </tr>
+                    {% for r in request_list %}
+                        {% if r.status == "pending" %}
+                            <tr>
+                                <td>{{ r.requester }}</td>
+                                <td>{{ r.recipient }}</td>
+                                <td>{{ r.amount }}</td>
+                                <td>{{ r.datetime }}</td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                </table>
+                <h6>Respond to requests<a href="requestrespond.html">here</a></h6>
+            {% else %}
+                <h1>You currently have no requests.</h1>
+                <h3>When you receive a request, they will be viewable here.</h3>
+            {% endif %}
+        </body>
+    {% else %}
+        <body>
+            <h1>You are not logged in.</h1>
+            <h3>Please <a href="/login/">log in</a> to view transactions.</h3>
+        </body>
+    {% endif %}
+{% endblock %}

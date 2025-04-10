@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from register.models import CustomUser
 
-currency_choices = (("gbp", "GBP"), ("eur", "EUR"),  ("usd", "USD"))
+currency_choices = [("gbp", "GBP"), ("eur", "EUR"),  ("usd", "USD")]
 
 class RegisterForm(UserCreationForm):
     email = forms.EmailField(required=True)
@@ -32,3 +32,14 @@ class LoginForm(forms.Form):
     class Meta:
         model = CustomUser
         fields = ("email", "password")
+
+class RegisterAdminForm(UserCreationForm):
+    email = forms.EmailField(required=True)
+    forename = forms.CharField(required=True)
+    surname = forms.CharField(required=True)
+    currency = forms.ChoiceField(required=True, choices=currency_choices)
+    adminPassword = forms.CharField(widget=forms.PasswordInput)
+
+    class Meta:
+        model = CustomUser
+        fields = ("forename", "surname", "email", "currency")
